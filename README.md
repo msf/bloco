@@ -1,24 +1,13 @@
-# bloco
+# Sample Hardhat Project
 
-Baremetal blockchain native (ethereum) client.
+This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
 
-the goal is to have a cli to execute transfers, swaps.. etc..
+Try running some of the following tasks:
 
-## steps/ideas
-
-Have a smartcontract that can do uniswap swaps between two hard-coded tokens:
-- USDC
-- ETHW
-(using polygon network)
-
-    I need to know the following addresses:
-    ERC20 ETHW address on polygon
-    ERC20 USDC address on polygon
-    the smartcontract address for the uniswap pool for USDC:ETHW
-
-    things needed:
-    - deploy my own smartcontract
-    - give the smartcontract approval to make swaps in my name, afaik
-    - how to invoke the smartcontract from cli?
-
-https://docs.uniswap.org/contracts/v3/guides/swaps/single-swaps
+```shell
+npx hardhat help
+npx hardhat test
+REPORT_GAS=true npx hardhat test
+npx hardhat node
+npx hardhat run scripts/deploy.ts
+```
