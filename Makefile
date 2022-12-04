@@ -1,4 +1,7 @@
-all: lint test build
+all: hardhat lint test build
+
+hardhat:
+	npx hardhat compile
 
 test:
 	go mod tidy
