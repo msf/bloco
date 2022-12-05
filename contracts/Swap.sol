@@ -18,7 +18,7 @@ contract SimpleSwap {
     }
 
     function swapUSDCForWETH9(
-        uint256 amountIn
+        uint16 amountIn
     ) external returns (uint256 amountOut) {
         // Transfer the specified amount of USDC to this contract.
         TransferHelper.safeTransferFrom(

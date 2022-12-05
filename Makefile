@@ -1,5 +1,13 @@
 all: hardhat lint test build
 
+setup-hardhat:
+	npm add --save-dev hardhat
+	npx hardhat init
+	npm add @uniswap/v3-periphery @uniswap/v3-core
+	npm add @openzeppelin/contracts@3
+	npm add @nomiclabs/hardhat-vyper
+
+
 hardhat:
 	npx hardhat compile
 

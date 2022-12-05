@@ -1,18 +1,40 @@
-import { ethers } from "hardhat";
+import {
+    constants,
+    ethers
+} from "hardhat";
+
+import {
+    Contract,
+    Wallet
+} from "@ethersproject/contracts";
+
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
 
-  const lockedAmount = ethers.utils.parseEther("1");
+  const POLYGON_NETWORK_ID = 137;
+    // Set up the provider to connect to the Polygon network
+  const provider = new ethers.providers.JsonRpcProvider(
+    process.env.WEB3_RPC_URL,
+    POLYGON_NETWORK_ID
+  );
+  // Create a wallet from the private key
+  const wallet = new Wallet(process.env.METAMASK_DOXXED_PRIVATE_KEY);
 
-  const Lock = await ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
+    const factory = await ethers.getContractFactory("SimpleSwap");
+    // Define the contract deployment parameters.
+    const swapRouter = await ethers.GetContractAt("SwapRouter", 0xE592427A0AEce92De3Edee1F18E0157C05861564)
+    const params = {
+        // Set the Uniswap v3 swap router address.
+        _swapRouter: swapRouter
+    };
+    const sswap = await factory.deploy(params);
 
-  await lock.deployed();
+    await sswap.deployed();
 
-  console.log(`Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`);
+    it("should deploy the contract", async function () {
+        expect(sswap.address).to.not.be.null;
+    });
+    console.log(`SimpleSwap (USDC -> WETH9) deployed to ${sswap.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
