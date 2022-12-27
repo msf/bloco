@@ -6,7 +6,6 @@ const config: HardhatUserConfig = {
 };
 
 
-
 module.exports = {
     config: {
         accounts: [process.env.METAMASK_DOXXED_PRIVATE_KEY],
